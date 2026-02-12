@@ -1,0 +1,21 @@
+SOP ID: SOP-001
+
+Title: Employee Onboarding
+
+Category: HR
+
+Purpose: To ensure all new employees are onboarded efficiently and consistently
+
+Scope: All departments, all new employees
+
+Responsibilities:
+	1.HR: Collect documents, create profiles
+	2.IT: Set up accounts and devices
+	3.Procedure / Steps:
+		A.HR sends welcome email
+		B.Collect personal and professional documents
+		C.IT creates system accounts
+		D.Assign a mentor
+	4.Related Documents: KYC Process SOP, IT Account Setup SOP
+	5.Revision / Version: v1.0
+	6.Created Date / Author: 11-Feb-2026 / Vivek Ravi
