@@ -1,12 +1,13 @@
 from sqlalchemy import Column,String,Text,ForeignKey,DateTime
 from sqlalchemy.orm import relationship
 from database import Base
+import uuid
 
 
 class DBSOP(Base):
     __tablename__ = "sops"
 
-    id = Column(String,primary_key=True,index=True)
+    id = Column(String,primary_key=True,default=lambda:str(uuid.uuid4()))
     title = Column(String,nullable=False)
     category = Column(String,nullable=False)
     description = Column(Text,nullable=True)
