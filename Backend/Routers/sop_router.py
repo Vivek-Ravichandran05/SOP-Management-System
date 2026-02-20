@@ -33,8 +33,16 @@ def create_sop(sop:SOPCreate, db:Session=Depends(get_db),current_user:User = Dep
     return new_sop
 
 @router.get("/",response_model=list[SOPDetailResponse])
-def get_all_sops(skip:int = 0,limit:int = 10,db: Session = Depends(get_db),current_user:User = Depends(get_current_user)):
-    return db.query(DBSOP).filter(DBSOP.user_id == current_user.id).offset(skip).limit(limit).all()
+def get_all_sops(skip:int = 0,limit:int = 10,search:str|None=None,db: Session = Depends(get_db),current_user:User = Depends(get_current_user)):
+    
+    data = db.query(DBSOP).filter(DBSOP.user_id == current_user.id)
+
+    if search:
+        data = data.filter(DBSOP.title.ilike(f"%{search}%"))
+
+    file = data.offset(skip).limit(limit).all()
+
+    return file
 
 @router.get("/{sop_id}",response_model=SOPDetailResponse)
 def get_sop(sop_id:str,db: Session = Depends(get_db),current_user:User = Depends(get_current_user)):
