@@ -36,6 +36,7 @@ def login(user: UserLogin,db:Session=Depends(get_db)):
     if not verify_password(user.password,db_user.password):
         raise HTTPException(status_code=400,detail="Invalid Credentials")
     
-    token = create_access_token({"sub":str(db_user.id)})
+    token = create_access_token({"sub":str(db_user.id),
+                                 "name":str(db_user.name)})
 
     return {"access_token":token,"token_type":"bearer"}

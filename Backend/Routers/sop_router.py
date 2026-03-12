@@ -44,6 +44,12 @@ def get_all_sops(skip:int = 0,limit:int = 10,search:str|None=None,db: Session = 
 
     return file
 
+@router.get("/count")
+def get_sop_count(db:Session=Depends(get_db),current_user:User = Depends(get_current_user)):
+    count = db.query(DBSOP).filter(DBSOP.user_id == current_user.id).count()
+
+    return {"Total" : count}
+
 @router.get("/{sop_id}",response_model=SOPDetailResponse)
 def get_sop(sop_id:str,db: Session = Depends(get_db),current_user:User = Depends(get_current_user)):
 
