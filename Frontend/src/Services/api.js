@@ -10,4 +10,20 @@ api.interceptors.request.use((config) => {                             /* when t
     return config;                                                     /* the configured data sent back to backend */
 });
 
+api.interceptors.response.use(
+  (response) => response,
+
+  (error) => {
+
+    if (error.response && error.response.status === 401) {
+
+      localStorage.removeItem("token");
+
+      window.location.href = "/login";
+    }
+
+    return Promise.reject(error);
+  }
+);
+
 export default api;
